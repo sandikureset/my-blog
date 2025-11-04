@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog - Contoh GitHub Pages</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📘 My Blog</h1>
+    <p>Belajar Markdown & GitHub Pages</p>
+  </header>
+
+  <main id="content">
+    <p>Memuat artikel...</p>
+  </main>
+
+  <footer>
+    <p>© 2025 Dibuat dengan ❤️ oleh <a href="https://github.com/username" target="_blank">username</a></p>
+  </footer>
+
+  <script>
+    async function loadMarkdown() {
+      const response = await fetch('artikel1.md');
+      const text = await response.text();
+      // ubah markdown dasar ke HTML sederhana
+      const html = text
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/\*\*(.*?)\*\*/gim, '<b>$1</b>')
+        .replace(/\*(.*?)\*/gim, '<i>$1</i>')
+        .replace(/\n$/gim, '<br>')
+        .replace(/\n/g, '<br>');
+      document.getElementById('content').innerHTML = html;
+    }
+    loadMarkdown();
+  </script>
+</body>
+</html>
